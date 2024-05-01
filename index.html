@@ -3,320 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spotify-like Audio Player</title>
-    <style>
-        /* Global Styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #121212;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .audio-player {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 300px;
-            background-color: #1E1E1E;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .track-info {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-
-        .track-title {
-            font-size: 18px;
-            margin-bottom: 5px;
-        }
-
-        .track-artist {
-            font-size: 14px;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 4px;
-            background-color: #535353;
-            border-radius: 2px;
-            margin-bottom: 15px;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .progress {
-            height: 100%;
-            background-color: #1ED760;
-            border-radius: 2px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            transition: width 0.1s linear; /* Add smooth transition */
-        }
-
-        .controls {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            margin-top: 10px; /* Add margin to separate from timing */
-        }
-
-        .timing-container {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            color: #fff;
-            font-size: 14px;
-        }
-
-        .playback-container {
-            display: flex;
-            align-items: center;
-        }
-
-        button {
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            margin: 0 10px;
-            transition: transform 0.2s ease-in-out;
-            border-radius: 100%;
-        }
-
-        button:hover {
-            transform: scale(1.2);
-        }
-
-        button img {
-            width: 30px;
-            height: 30px;
-        }
-
-        /* Adjust play/pause button size */
-        #playPauseBtn {
-            width: 40px;
-            height: 40px;
-        }
-
-        .image {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px; /* Add space between image and controls */
-        }
-
-        img {
-            width: 50%; /* Adjust the image size */
-            height: 50%; /* Adjust the image size */
-            border-radius: 20%; /* Make the image circular */
-        }
-
-        .lyrics-container {
-            display: none;
-            margin-top: 20px;
-            color: #fff;
-            font-size: 16px;
-            line-height: 1.6;
-            text-align: center;
-        }
-
-        .show-lyrics {
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            color: #1ED760;
-            margin-top: 10px;
-        }
-
-        .show-lyrics:hover {
-            color: #fff;
-        }
-
-        .download-btn {
-            background-color: #2632d9;
-            color: #fff;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            align-self: flex-end;
-        }
-
-        .download-btn:hover {
-            background-color: #1d51b1;
-        }
-    </style>
+    <title>Sh Music</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="audio-player">
-        <div class="track-info">
-            <div class="track-title">Arangba Thawanmichak OST</div>
-            <div class="track-artist">Innocent Eyes</div>
+    <header>
+        <h1>Sh Music</h1>
+        <!-- Menu toggle button -->
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
         </div>
-        <div class="image">
-            <img src="Arangba_Thawanmichak_OST.png" alt="Album Cover">
+        <nav>
+            <ul>
+                <!-- Add some -->
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="https://www.instagram.com/shakespearechabungbam/">Contact</a></li>
+            </ul>
+            
+        </nav>
+    </header>
+    <section class="search">
+        <div class="search-container">
+            <input type="text" id="searchInput" onkeyup="searchSongs()" placeholder="Search Music">
+            <button onclick="searchSongs()">Search</button>
         </div>
-        <div class="progress-bar" id="progressBar">
-            <div class="progress" id="progress"></div>
+    </section>
+    <section class="ListOfSongs">
+        <ul id="songList">
+            <a href="">
+                <li>
+                    <div class="song">
+                        <img src="SongsIcon/Innocent_Eyes.jpg" alt="">
+                        <div class="Title">
+                            Arangba Thawanmichak
+                        </div>
+                        <div class="SubTitle">
+                            Innocent Eyes
+                        </div>
+                    </div>
+                </li>
+            </a>
+            <a href="https://shakespearecha.github.io/Kouramge-Eyoom/">
+                <li>
+                    <div class="song">
+                        <img src="SongsIcon/Kouramge.png" alt="">
+                        <div class="Title">
+                            Kouramge
+                        </div>
+                        <div class="SubTitle">
+                            Eyoom
+                        </div>
+                    </div>
+                </li>
+            </a>
+            <a href="https://shakespearecha.github.io/Bidai-TheKoi/">
+                <li>
+                    <div class="song">
+                        <img src="SongsIcon/TheKoi.jpg" alt="">
+                        <div class="Title">
+                            Bidai
+                        </div>
+                        <div class="SubTitle">
+                            The Koi
+                        </div>
+                    </div>
+                </li>
+            </a>
+            <a href="https://shakespearecha.github.io/Thawai-wo-Pradeep-Nongthombam/">
+                <li>
+                    <div class="song">
+                        <img src="SongsIcon/Thawai-Wo.png" alt="">
+                        <div class="Title">
+                            Thawai-Wo
+                        </div>
+                        <div class="SubTitle">
+                            Pradeep
+                        </div>
+                    </div>
+                </li>
+            </a>
+            <!-- Other song items go here -->
+        </ul>
+    </section>
+    
+
+    
+
+    <footer>
+        <div class="footer-links">
+            <h4>Shop and Learn</h4>
+            <ul>
+                <li><a href="https://shakespearechabungbam.github.io/ShStore/">Store</a></li>
+                <li><a href="https://shakespearechabungbam.github.io/ShStore/course.html">Course</a></li>
+                <li><a href="https://shakespearechabungbam.github.io/ShStore/books.html">Books</a></li>
+            </ul>
         </div>
-        <div class="timing-container">
-            <div class="current-timing" id="currentTiming">0:00</div>
-            <div class="playback-container">
-                <button id="playPauseBtn"><img src="play.png" alt="Play"></button>
-            </div>
-            <div class="full-timing" id="fullTiming">0:00</div>
+        <div class="footer-info">
+            <h4>Sh Wallet</h4>
+            <ul>
+                <li><a href="#">Account</a></li>
+                <li><a href="#">Manage Your Sh ID</a></li>
+                <li><a href="#">Sh Store Account</a></li>
+            </ul>
         </div>
-        <button class="show-lyrics" id="toggleLyricsBtn">Show Lyrics</button>
-        <div class="lyrics-container" id="lyricsContainer">
-            Korouna ningthina ngalaga
-            Nanakta laklani eina
-            Ngairamkho ngbune
-
-            Korouna ningthina ngalaga
-            Nanakta laklani eina
-            Ngairamkho ngbune
-
-            Laijagi epomga loinana
-            Tanik Tanik pukningbu 
-            Themlage nahakki
-
-            Ahingsima pirangdi chintharamganu 
-            Ngairamkho thawai-wo
-
-            Engna chikna 
-            Potharani Nanakta
-            Pungja Khuding 
-            Thawai-Wo
-
-            Ningjaba sinthasu panglaga laklani
-            Pirangna hanna hanna chotlaba hakchangni
-            Thamoigi waheina amuktang kokhanlo
-
-            Ahingsima momon momon noktuna 
-            Ngairamkho thawai-wo
-
-            Engna chikna potharani nanakta
-            Kaplanu thawai-wo
+        <div class="footer-info">
+            <h4>Entertainment</h4>
+            <ul>
+                <li><a href="index.html">Sh Music</a></li>
+                <li><a href="#">Sh Movie</a></li>
+                <li><a href="#">Sh Game Store</a></li>
+            </ul>
         </div>
-        <button class="download-btn" id="downloadBtn">Download</button>
-    </div>
+        <div class="footer-contact">
+            <h4>Contact Sh</h4>
+            <ul>
+                <li><a href="https://wa.me/918837067635" target="_blank">WhatsApp</a></li>
+                <li><a href="https://instagram.com/shakespearechabungbam" target="_blank">Instagram</a></li>
+            </ul>
+        </div>
+        <div class="footer-disclaimer">
+            <p>Copyright © 2024 Sh. All rights reserved.</p>
+        </div>
+        <div class="footer-legal">
+            <p>
+                <a href="#">Privacy Policy</a> 
+                <a href="#">Terms of Use</a> 
+                <a href="#">Sales Policy</a> 
+                <a href="#">Legal</a>
+            </p>
+        </div>
+    </footer>
 
     <script>
-        const playPauseBtn = document.getElementById('playPauseBtn');
-        const toggleLyricsBtn = document.getElementById('toggleLyricsBtn');
-        const downloadBtn = document.getElementById('downloadBtn');
-        const audioPlayer = new Audio();
-        audioPlayer.src = 'Arangba Thawanmichak.mp3'; // Replace 'audio.mp3' with your audio file URL
+        function toggleMenu() {
+            var navMenu = document.querySelector('nav ul');
+            navMenu.classList.toggle('active');
 
-        let isPlaying = false;
-        let isDragging = false;
-        let animationFrameId; // Variable to hold the animation frame ID
-        const progressBar = document.getElementById('progressBar');
-        const progress = document.getElementById('progress');
-        const currentTiming = document.getElementById('currentTiming');
-        const fullTiming = document.getElementById('fullTiming');
-        const lyricsContainer = document.getElementById('lyricsContainer');
-
-        playPauseBtn.addEventListener('click', () => {
-            if (isPlaying) {
-                audioPlayer.pause();
-                isPlaying = false;
-                playPauseBtn.innerHTML = '<img src="play.png" alt="Play">';
-                cancelAnimationFrame(animationFrameId); // Stop updating progress when paused
-            } else {
-                audioPlayer.play();
-                isPlaying = true;
-                playPauseBtn.innerHTML = '<img src="pause.png" alt="Pause">';
-                requestAnimationFrame(updateProgress); // Start updating progress
-            }
-        });
-
-        toggleLyricsBtn.addEventListener('click', () => {
-            if (lyricsContainer.style.display === 'none') {
-                lyricsContainer.style.display = 'block';
-                toggleLyricsBtn.textContent = 'Hide Lyrics';
-            } else {
-                lyricsContainer.style.display = 'none';
-                toggleLyricsBtn.textContent = 'Show Lyrics';
-            }
-        });
-
-        downloadBtn.addEventListener('click', () => {
-            const a = document.createElement('a');
-            a.href = audioPlayer.src;
-            a.download = audioPlayer.src;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-        });
-
-        progressBar.addEventListener('click', (e) => {
-            const width = progressBar.clientWidth;
-            const clickX = e.offsetX;
-            const duration = audioPlayer.duration;
-            audioPlayer.currentTime = (clickX / width) * duration;
-        });
-
-        audioPlayer.addEventListener('timeupdate', () => {
-            if (!isDragging) {
-                const currentTime = audioPlayer.currentTime;
-                const duration = audioPlayer.duration;
-                const progressWidth = (currentTime / duration) * 100 + '%';
-                progress.style.width = progressWidth;
-                currentTiming.textContent = formatTime(currentTime);
-            }
-        });
-
-        audioPlayer.addEventListener('loadedmetadata', () => {
-            const duration = audioPlayer.duration;
-            fullTiming.textContent = formatTime(duration);
-        });
-
-        audioPlayer.addEventListener('ended', () => {
-            isPlaying = false;
-            playPauseBtn.innerHTML = '<img src="play.png" alt="Play">';
-            cancelAnimationFrame(animationFrameId); // Stop updating progress when ended
-        });
-
-        progress.addEventListener('mousedown', () => {
-            isDragging = true;
-        });
-
-        progress.addEventListener('mouseup', (e) => {
-            const width = progressBar.clientWidth;
-            const clickX = e.offsetX;
-            const duration = audioPlayer.duration;
-            audioPlayer.currentTime = (clickX / width) * duration;
-            isDragging = false;
-        });
-
-        function updateProgress() {
-            const currentTime = audioPlayer.currentTime;
-            const duration = audioPlayer.duration;
-            const progressWidth = (currentTime / duration) * 100 + '%';
-            progress.style.width = progressWidth;
-            currentTiming.textContent = formatTime(currentTime);
-            animationFrameId = requestAnimationFrame(updateProgress); // Schedule next update
+            // Toggle blur effect on the body
+            document.body.classList.toggle('blur');
+            
+            // Toggle cross icon on menu toggle button
+            var menuToggle = document.querySelector('.menu-toggle');
+            menuToggle.classList.toggle('cross');
         }
 
-        function formatTime(seconds) {
-            let min = Math.floor(seconds / 60);
-            let sec = Math.floor(seconds % 60);
-            sec = sec < 10 ? '0' + sec : sec;
-            return min + ':' + sec;
+        function searchSongs() {
+    // Get the search query from the input field
+    var input = document.getElementById("searchInput");
+    var filter = input.value.toUpperCase();
+
+    // Get the list of songs
+    var songs = document.getElementById("songList").getElementsByTagName("li");
+
+    // Loop through each song item
+    for (var i = 0; i < songs.length; i++) {
+        var song = songs[i];
+        var title = song.getElementsByClassName("Title")[0];
+        var subTitle = song.getElementsByClassName("SubTitle")[0];
+        var titleText = title.textContent || title.innerText;
+        var subTitleText = subTitle.textContent || subTitle.innerText;
+        
+        // Check if the title or subtitle contains the search query
+        if (titleText.toUpperCase().indexOf(filter) > -1 || subTitleText.toUpperCase().indexOf(filter) > -1) {
+            song.style.display = "";
+        } else {
+            song.style.display = "none";
         }
+    }
+}
+
     </script>
 </body>
 </html>
